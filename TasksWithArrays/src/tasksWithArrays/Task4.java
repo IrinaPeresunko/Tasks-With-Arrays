@@ -22,6 +22,34 @@ public class Task4 {
 				System.out.println();
 		}	
 	}
+	public static void printInForm3(int[][] array, int N,int M) {
+		array=sortingInDecreasingOrder(array,N,M);
+		int k=0;
+		int[] temp=new int[N*M];
+		for(int i=0;i<N;i++){
+			for(int j=0;j<M;j++){
+				temp[k]=array[i][j];
+				k++;
+			}
+		}
+		
+		int p=0;
+		for(int i=0;i<M;i++){			
+			if(i%2==0){
+				for(int j=0;j<N;j++){					
+					array[j][i]=temp[p];
+					p++;
+				}
+			}
+			else{
+				for(int j=N-1;j>=0;j--){
+					array[j][i]=temp[p];
+					p++;
+				}
+			}
+		}
+		printArray(array,N,M);
+	}
 	public static void printInForm2(int[][] array, int N,int M) {
 		array=sortingInDecreasingOrder(array,N,M);
 		for(int j=0;j<M;j++){
@@ -88,21 +116,21 @@ public class Task4 {
 		return array;
 	}
 	public static void main(String[] args) {
-		int N=3,M=3;
-
-		//int[][] array=new int[N][M];
+		int N=5,M=8;
 		
-//		for(int i=0;i<N;i++){
-//			for(int j=0;j<M;j++){
-//				//array[i][j]=(int) (Math.random()*31)-15;
-//				array[i][j]=(int) (Math.random()*10);
-//			}
-//		}
-		int[][] array={
-				{1,2,3},
-				{4,5,6},
-				{7,8,9}
-		};
+		int[][] array=new int[N][M];
+		
+		for(int i=0;i<N;i++){
+			for(int j=0;j<M;j++){
+				//array[i][j]=(int) (Math.random()*31)-15;
+				array[i][j]=(int) (Math.random()*10);
+			}
+		}
+//		int[][] array={
+//				{1,2,3},
+//				{4,5,6},
+//				{7,8,9}
+//		};
 
 		printArray(array,N,M);
 
@@ -110,6 +138,8 @@ public class Task4 {
 		printInForm2(array,N,M);
 		System.out.println("Printing array in form1");
 		printInForm1(array,N,M);
+		System.out.println("Printing array in form3");
+		printInForm3(array,N,M);
 	
 	}
 }
